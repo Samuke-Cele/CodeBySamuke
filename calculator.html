@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <td colspan="4">
+                <input type="text" id="inputBox" value="0" />
+            </td>
+        </tr>
+        <tr>
+            <td class= "digitBtnPressed" onclick="digitBtnPressed(7)">7</td>
+            <td class= "digitBtnPressed" onclick="digitBtnPressed(8)">8</td>
+            <td class= "digitBtnPressed" onclick="digitBtnPressed(9)">9</td>
+            <td class= "operatorBtnPressed" onclick="operatorBtnPressed('*')">X</td>
+        </tr>
+        <tr>
+            <td class= "digitBtnPressed" onclick="digitBtnPressed(4)">4</td>
+            <td class= "digitBtnPressed" onclick="digitBtnPressed(5)">5</td>
+            <td class= "digitBtnPressed" onclick="digitBtnPressed(6)">6</td>
+            <td class= "operatorBtnPressed" onclick="operatorBtnPressed('-')">-</td>
+        </tr>
+        <tr>
+            <td class= "digitBtnPressed" onclick="digitBtnPressed(1)">1</td>
+            <td class= "digitBtnPressed" onclick="digitBtnPressed(2)">2</td>
+            <td class= "digitBtnPressed" onclick="digitBtnPressed(3)">3</td>
+            <td class="operatorBtnPressed" onclick="operatorBtnPressed('+')">+</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="digitBtnPressed" onclick="digitBtnPressed(0)">0</td>
+
+            <td class="btnACPressed" onclick="btnACPressed()">AC</td>
+            <td class="operatorBtnPressed" onclick="operatorBtnPressed('/')">/</td>
+
+        </tr>
+        <tr>
+            <td colspan="4"  class="operatorBtnPressed" onclick="equalsBtnPressed('=')">=</td>
+        </tr>
+
+    </table>
+    <script>
+
+        var newLine = true; //Boolean variable. Determines if a new line is being started
+        // If true, the next digit pressed will replace the current value in the input box
+        // If false, the next digit pressed will be appended to the current value in the input box
+    
+        var value1; // First value entered by the user before an operator is pressed
+        // This value is used in calculations when the equals button is pressed
+        // It is set to the current input box value when an operator button is pressed
+        var currentoperator; // The current operator selected by the user
+        // This variable is set when an operator button is pressed
+        // It is used to determine the operation to perform when the equals button is pressed
+
+        // Event handler for when any digit button is pressed
+
+        function digitBtnPressed(button) {
+
+            if(newLine) {
+                document.getElementById("inputBox").value = button; 
+                newLine = false;
+            } else {
+                var currentValue = document.getElementById("inputBox").value;
+                document.getElementById("inputBox").value = currentValue + button;
+            }
+        }
+        // Event handler for when the AC button is pressed
+        // Resets the input box to 0 and sets newLine to true
+        function btnACPressed(){
+            document.getElementById("inputBox").value = 0;
+            newLine = true;
+        }
+        // Event handler for when an operator button is pressed
+        // Sets the current operator and value1 to the current input box value
+        // Sets newLine to true to indicate that a new line is being started
+        function operatorBtnPressed(operator) {
+            currentoperator = operator;
+            value1 = parseInt(document.getElementById("inputBox").value);
+            newLine = true;
+
+        }
+
+        // Event handler for when the equals button is pressed
+        // Calculates the result based on the current operator and value1
+        function equalsBtnPressed() {
+            var value2 = parseInt(document.getElementById("inputBox").value);
+            var finalTotal;
+
+            switch(currentoperator) {
+                case '+':
+                    finalTotal = value1 + value2;
+                    break;
+                case '-':
+                    finalTotal = value1 - value2;
+                    break;
+                case '*':
+                    finalTotal = value1 * value2;
+                    break;
+                case '/':
+                    finalTotal = value1 / value2;
+                    break;
+                default:
+                    finalTotal = "Error";
+            }
+
+            document.getElementById("inputBox").value = finalTotal;
+            newLine = true; // Set newLine to true after calculation
+        }
+
+    </script>
+</body>
+</html>

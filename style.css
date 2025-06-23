@@ -1,0 +1,56 @@
+table {
+    color:yellow;
+    font-family: Arial;
+    font-size: medium;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+tr {
+    height: 16.02vh;
+    background-color: darkgreen;
+}
+
+td {
+    width: 25vw;
+    border: 1px solid yellow;
+}
+
+#inputBox {
+    background-color: darkgreen;
+    text-align: left;
+    width: 99%;
+    font-size: 2em;
+    color:yellow;
+    border: 0px;
+}
+
+.digitBtnPressed {
+    background-color: lightgreen;
+    color: darkolivegreen;
+}
+
+.operatorBtnPressed {
+    background-color: yellowgreen;
+    color: black;
+}
+
+.btnACPressed {
+    background-color: seagreen;
+    color: white;
+}
+
+.digitBtnPressed:hover {
+    background-color: white;
+    color: darkolivegreen;
+}
+
+.operatorBtnPressed:hover {
+    background-color: yellow;
+    color: black;
+}
+
+.btnACPressed:hover {
+    background-color: lightseagreen;
+    color: white;
+}
